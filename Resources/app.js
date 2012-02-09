@@ -17,6 +17,12 @@ else if (Ti.Platform.osname === 'mobileweb') {
 	alert('Mobile web is not yet supported by this template');
 }
 else {
+	
+	// setup some pre-load settings
+	// iphone app settings
+	Titanium.UI.iPhone.statusBarHidden = true;
+
+	
 	//require and open top level UI component
 	var ApplicationWindow = require('ui/ApplicationWindow');
 	new ApplicationWindow().open();
