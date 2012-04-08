@@ -1,8 +1,8 @@
-#appname: designbook_1
-#publisher: Naren
-#url: http://
-#image: appicon.png
-#appid: com.designbook.mobile
-#desc: undefined
-#type: mobile
-#guid: d4fd7eca-8618-4dd3-b3f8-5f534b9613eb
+#appname:designbook_1
+#publisher:designbook
+#url:http://designbook.in
+#image:appicon.png
+#appid:com.designbook.mobile
+#desc:designbook.
+#type:mobile
+#guid:d4fd7eca-8618-4dd3-b3f8-5f534b9613eb

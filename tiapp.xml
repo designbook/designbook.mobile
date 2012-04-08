@@ -2,19 +2,19 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <deployment-targets>
         <target device="mobileweb">true</target>
-        <target device="iphone">false</target>
+        <target device="iphone">true</target>
         <target device="ipad">false</target>
         <target device="android">true</target>
         <target device="blackberry">false</target>
     </deployment-targets>
-    <sdk-version>1.8.0.1</sdk-version>
+    <sdk-version>2.0.1.v20120406170211</sdk-version>
     <id>com.designbook.mobile</id>
     <name>designbook_1</name>
     <version>1.0</version>
-    <publisher>Naren</publisher>
-    <url>http://</url>
-    <description>not specified</description>
-    <copyright>2012 by Naren</copyright>
+    <publisher>designbook</publisher>
+    <url>http://designbook.in</url>
+    <description>designbook. </description>
+    <copyright>DesignBook 2012</copyright>
     <icon>appicon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>

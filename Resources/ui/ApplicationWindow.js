@@ -12,8 +12,11 @@ function ApplicationWindow() {
 		
 	//construct UI
 	var cameraView = new CameraView();
-	self.add(cameraView);
-	
+	if (cameraView !=  null) {
+		// if camera is not available
+		// just add the overlay (for testing)
+		self.add(cameraView);
+	}
 	return self;
 }
 
