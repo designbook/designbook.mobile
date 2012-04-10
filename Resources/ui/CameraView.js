@@ -1,8 +1,73 @@
 //CameraView Component Constructor
-function CameraView() {
+var CameraView = function(w1in) {
 
+   var navbars = require('/ui/common/navbars');
+   var bottomBar = navbars.createBottomBar(false);
+
+   var topBar = TopBar();
+
+   // create the camera overlay
    var overlay = Ti.UI.createView();
+   overlay.add(bottomBar);
+   overlay.add(topBar);
 
+   // don't show camera if not present (for simulator testing)'
+   if (Titanium.Media.isCameraSupported == false) {
+      // just render the overlay
+      return overlay;
+   }
+
+   Titanium.Media.showCamera({
+      showControls: false,
+      allowEditing: false,
+      autohide: false,
+      saveToPhotoGallery: true,
+      overlay: overlay,
+
+      success:function(event) {
+         // gets called after a picture is taken
+         // save it, move to next screen
+         Ti.API.info('in success function');
+         // place our picture into our window
+         var imageView = Ti.UI.createImageView({
+            image: event.media,
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0
+         });
+
+         var testLabel = Ti.UI.createLabel({
+            width: '100dp',
+            height: '50dp',
+            title: 'TESTING THIS IMAGE',
+            color: 'white',
+         });
+         
+         imageView.add(testLabel);
+
+         // programatically hide the camera
+         Ti.Media.hideCamera();
+      },
+      cancel:function(event) {
+         alert("camera cancel!");
+      },
+      error:function(error) {
+         if (error.code == Titanium.Media.NO_CAMERA) {
+            alert("No camera here.")
+         } else {
+            alert("Camera Error: " + error.code);
+         }
+      }
+   });
+
+   return null;
+}
+
+module.exports = CameraView;
+
+var TopBar = function() {
+	
    var topBar = Ti.UI.createView({
       backgroundColor: 'transparent',
        opacity: 0.7,
@@ -46,82 +111,9 @@ function CameraView() {
       alert("show design stage list");
    });
 
-
    // add buttons to top bar
    topBar.add(projectSelector);
    topBar.add(stageSelector);
-
-   var bottomBar = Ti.UI.createView({
-      backgroundColor: 'black',
-       height: 50,
-       bottom: 0,
-       left: 0,
-       right: 0,
-       layout: 'horizontal',
-       color: 'white'
-   });
-
-   //camera button
-   var cameraButton = Ti.UI.createButton({
-      title: 'Camera',
-       width: '90dp',
-       height: '40dp',
-       style: Titanium.UI.iPhone.SystemButtonStyle.PLAIN,
-       font: { fontSize: 11, font: 'Helvetica'}
-   });
-
-   cameraButton.addEventListener('click', function(e) {
-      //save image
-      alert("click!");
-   });
-
-   var projectsButton = Titanium.UI.createButton({
-      title: 'All Projects',
-       width: '110dp',
-       height: '40dp',
-       left: '0dp',
-       style: Titanium.UI.iPhone.SystemButtonStyle.PLAIN,
-       font: { fontSize: 11, font: 'Helvetica'}
-   });
-
-   // build the bottom bar
-   bottomBar.add(projectsButton);
-   bottomBar.add(cameraButton);
-
-   //add buttons to UI
-   overlay.add(cameraButton);
-   overlay.add(bottomBar);
-   overlay.add(topBar);
-
-   // don't show camera if not present (for simulator testing)'
-   if (Titanium.Media.isCameraSupported == false) {
-      // just render the overlay
-      return overlay;
-   }
-
-   Titanium.Media.showCamera({
-      showControls: false,
-      allowEditing: false,
-      autohide: false,
-      saveToPhotoGallery: true,
-      overlay: overlay,
-
-      success:function(event) {
-         alert("camera success!");
-      },
-      cancel:function(event) {
-         alert("camera cancel!");
-      },
-      error:function(error) {
-         if (error.code == Titanium.Media.NO_CAMERA) {
-            alert("No camera here.")
-         } else {
-            alert("Camera Error: " + error.code);
-         }
-      }
-   });
-
-   return null;
+   
+   return topBar;
 }
-
-module.exports = CameraView;
