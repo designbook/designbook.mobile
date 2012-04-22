@@ -10,8 +10,8 @@
  */
 
 //bootstrap and check dependencies
-if (Ti.version < 1.8 ) {
-	alert('Sorry - this application template requires Titanium Mobile SDK 1.8 or later');
+if (Ti.version < 2.0 ) {
+	alert('Sorry - this application template requires Titanium Mobile SDK 2.0 or later');
 }
 else if (Ti.Platform.osname === 'mobileweb') {
 	alert('Mobile web is not yet supported by this template');

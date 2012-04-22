@@ -13,7 +13,7 @@ function ApplicationWindow() {
    });
 
    var cameraWindow = Ti.UI.createWindow({
-      url: './CameraWindow.js',
+      url: '/ui/CameraWindow.js',
       title: 'CameraWindow'
    });
    cameraWindow.open();

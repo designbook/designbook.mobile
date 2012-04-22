@@ -1,4 +1,5 @@
-var BottomBar = function(/* bool */ isCameraActive) {
+
+exports.bottomBar = function(/* bool */ isCameraActive) {
 
    var bottomBar = Ti.UI.createView({
       backgroundColor: 'black',
@@ -42,9 +43,10 @@ var BottomBar = function(/* bool */ isCameraActive) {
    });
 
    cameraButton.addEventListener('click', function(e) {
-      // capture an image. 
+      // capture an image.
       Ti.API.info('about to picture');
       Ti.Media.takePicture();
+
    });
 
    // build the bottom bar
@@ -52,6 +54,44 @@ var BottomBar = function(/* bool */ isCameraActive) {
    bottomBar.add(cameraButton);
 
    return bottomBar;
-}
+};
 
-exports.createBottomBar = BottomBar;
+exports.topBar = function() {
+
+   var topBar = Ti.UI.createView({
+      backgroundColor: 'transparent',
+       opacity: 0.7,
+       top: 0,
+       left: 0,
+       right: 0,
+       height: 60,
+       layout: 'horizontal',
+       color: 'white'
+   });
+
+   var projectSelector = buttonHelper.
+      blackButton({'title':'Project: HACK DAY',
+                   'top':'10dp',
+                   'left': '10dp'});
+
+   projectSelector.addEventListener('click', function(e) {
+      //bring up project selection menu
+      alert("show project list");
+   });
+
+   var stageSelector = buttonHelper.
+      blackButton({'title':'Stage: EMPATHIZE',
+                   'top': '10dp',
+                   'left': '10dp'});
+
+   stageSelector.addEventListener('click', function(e) {
+      //bring up stage selection menu
+      alert("show design stage list");
+   });
+
+   // add buttons to top bar
+   topBar.add(projectSelector);
+   topBar.add(stageSelector);
+
+   return topBar;
+};
